@@ -8,5 +8,6 @@ return {
 		map("n", "<leader>gap", "<cmd>Git add -p<cr>", { desc = "Git Add progressively" })
 		map("n", "<leader>gall", "<cmd>Git add --all<cr>", { desc = "Git Add all" })
 		map("n", "<leader>gp", "<cmd>Git push<cr>", { desc = "Git Push" })
+		map("n", "<leader>gb", "<cmd>Git branch<cr>", { desc = "Git branch" })
 	end,
 }

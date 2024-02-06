@@ -70,10 +70,8 @@ require("lazy").setup({
 
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
-					["<C-k>"] = cmp.mapping.select_next_item(),
-					["<C-j>"] = cmp.mapping.select_prev_item(),
-					["<C-u>"] = cmp.mapping.scroll_docs(4),
-					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					["<C-j>"] = cmp.mapping.select_next_item(),
+					["<C-k>"] = cmp.mapping.select_prev_item(),
 					["<Tab>"] = cmp.mapping.confirm(),
 				}),
 			})
@@ -135,7 +133,7 @@ require("lazy").setup({
 					jsonc = { "prettier" },
 				},
 				format_on_save = {
-					timeout_ms = 500,
+					timeout_ms = 3000,
 					lsp_fallback = true,
 				},
 			})

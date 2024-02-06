@@ -69,9 +69,13 @@ require("lazy").setup({
 			local cmp = require("cmp")
 
 			cmp.setup({
-				mapping = {
-					["<Tab>"] = cmp.select_next_item(),
-				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-k>"] = cmp.mapping.select_next_item(),
+					["<C-j>"] = cmp.mapping.select_prev_item(),
+					["<C-u>"] = cmp.mapping.scroll_docs(4),
+					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					["<Tab>"] = cmp.mapping.confirm(),
+				}),
 			})
 		end,
 	},
@@ -92,7 +96,17 @@ require("lazy").setup({
 			end)
 
 			require("mason-lspconfig").setup({
-				ensure_installed = {},
+				ensure_installed = {
+					"lua_ls",
+					"cssls",
+					"tailwindcss",
+					"html",
+					"tsserver",
+					"rust_analyzer",
+					"taplo",
+					"volar",
+					"jsonls",
+				},
 				handlers = {
 					lsp_zero.default_setup,
 					lua_ls = function()
@@ -109,6 +123,16 @@ require("lazy").setup({
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
+					css = { "prettier" },
+					scss = { "prettier" },
+					html = { "prettier" },
+					javascript = { "prettier" },
+					typescript = { "prettier" },
+					javascriptreact = { "prettier" },
+					typescriptreact = { "prettier" },
+					vue = { "prettier" },
+					json = { "prettier" },
+					jsonc = { "prettier" },
 				},
 				format_on_save = {
 					timeout_ms = 500,

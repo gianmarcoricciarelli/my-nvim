@@ -20,6 +20,8 @@ vim.opt.undofile = false
 -- SEARCH
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- MISCELLANEOUS
 vim.opt.scrolloff = 8

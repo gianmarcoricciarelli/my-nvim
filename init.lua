@@ -102,6 +102,7 @@ require("lazy").setup({
 					"tailwindcss",
 					"html",
 					"tsserver",
+					"eslint",
 					"rust_analyzer",
 					"taplo",
 					"volar",

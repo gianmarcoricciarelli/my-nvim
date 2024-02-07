@@ -26,7 +26,9 @@ return {
 
 		telescope.load_extension("fzf")
 
-		vim.keymap.set("n", "<leader>ff", telescope_builtins.find_files, {})
+		vim.keymap.set("n", "<leader>ff", function()
+			telescope_builtins.find_files({ hidden = true })
+		end, {})
 		vim.keymap.set("n", "<leader>fb", telescope_builtins.buffers, {})
 		vim.keymap.set("n", "<leader>fh", telescope_builtins.help_tags, {})
 	end,

@@ -104,10 +104,12 @@ require("lazy").setup({
 					"html",
 					"tsserver",
 					"eslint",
+					"stylelint",
 					"rust_analyzer",
 					"taplo",
 					"volar",
 					"jsonls",
+					"gopls",
 				},
 				handlers = {
 					lsp_zero.default_setup,

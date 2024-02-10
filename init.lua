@@ -64,13 +64,16 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
+			{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
 			local cmp = require("cmp")
+			local cmp_format = require("lsp-zero").cmp_format()
+			require("luasnip.loaders.from_vscode").lazy_load()
 
 			lsp_zero.extend_cmp()
 			cmp.setup({
@@ -78,25 +81,14 @@ require("lazy").setup({
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-k>"] = cmp.mapping.select_prev_item(),
 					["<Tab>"] = cmp.mapping.confirm(),
-					["<Enter>"] = cmp.mapping.confirm(),
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
 				},
-				formatting = {
-					format = function(entry, item)
-						local menu_icon = {
-							nvim_lsp = "NVIM-LSP",
-							buffer = "BUFFER",
-							path = "PATH",
-						}
-
-						item.menu = menu_icon[entry.source.name]
-						return item
-					end,
-				},
+				formatting = cmp_format,
 			})
 		end,
 	},

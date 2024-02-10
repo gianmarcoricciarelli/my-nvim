@@ -31,6 +31,7 @@ vim.opt.updatetime = 50
 
 -- LAZY PLUGIN MANAGER
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -41,7 +42,9 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup({
 	{ import = "plugins" },
 	{ import = "colorschemes" },
@@ -66,6 +69,7 @@ require("lazy").setup({
 		dependencies = {
 			{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 		},
@@ -81,14 +85,29 @@ require("lazy").setup({
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-k>"] = cmp.mapping.select_prev_item(),
 					["<Tab>"] = cmp.mapping.confirm(),
+					["<CR>"] = cmp.mapping.confirm(),
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
 				},
-				formatting = cmp_format,
+				formatting = {
+					format = function(entry, item)
+						local menu_icon = {
+							nvim_lsp = "nvim_lsp",
+							luasnip = "luasnip",
+							buffer = "buffer",
+							path = "path",
+							nvim_lua = "nvim_lua",
+						}
+
+						item.menu = menu_icon[entry.source.name]
+						return item
+					end,
+				},
 			})
 		end,
 	},

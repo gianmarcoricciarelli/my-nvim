@@ -1,4 +1,5 @@
 require("keymaps")
+
 -- INTERFACE
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -64,19 +65,30 @@ require("lazy").setup({
 		event = "InsertEnter",
 		dependencies = {
 			{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
-			lsp_zero.extend_cmp()
-
 			local cmp = require("cmp")
+			local cmp_format = require("lsp-zero").cmp_format()
+			require("luasnip.loaders.from_vscode").lazy_load()
 
+			lsp_zero.extend_cmp()
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-k>"] = cmp.mapping.select_prev_item(),
 					["<Tab>"] = cmp.mapping.confirm(),
 				}),
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "path" },
+				},
+				formatting = cmp_format,
 			})
 		end,
 	},
@@ -90,8 +102,8 @@ require("lazy").setup({
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
-			lsp_zero.extend_lspconfig()
 
+			lsp_zero.extend_lspconfig()
 			lsp_zero.on_attach(function(client, bufnr)
 				lsp_zero.default_keymaps({ buffer = bufnr })
 			end)

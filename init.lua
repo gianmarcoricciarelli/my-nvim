@@ -1,5 +1,4 @@
 require("gianmarcoricciarelli")
-require("keymaps")
 
 -- LAZY PLUGIN MANAGER
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

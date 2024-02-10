@@ -1,3 +1,5 @@
+require("gianmarcoricciarelli.keymaps")
+
 -- INTERFACE
 vim.opt.nu = true
 vim.opt.relativenumber = true

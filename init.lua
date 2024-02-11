@@ -48,6 +48,13 @@ require("lazy").setup({
 			lsp_zero.extend_lspconfig()
 			lsp_zero.on_attach(function(client, bufnr)
 				lsp_zero.default_keymaps({ buffer = bufnr })
+
+				vim.keymap.set(
+					"n",
+					"<leader>gd",
+					"<cmd>lua vim.lsp.buf.definition()<cr>",
+					{ desc = "LSP: Go to Definition" }
+				)
 			end)
 
 			require("mason-lspconfig").setup({

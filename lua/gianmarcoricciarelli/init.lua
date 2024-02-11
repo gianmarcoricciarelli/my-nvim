@@ -6,6 +6,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.termguicolors = true
 vim.opt.colorcolumn = "120"
+vim.opt.cursorline = true
 
 -- TABS AND INDENTATION
 vim.opt.tabstop = 4

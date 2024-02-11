@@ -47,13 +47,29 @@ require("lazy").setup({
 
 			lsp_zero.extend_lspconfig()
 			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({ buffer = bufnr })
-
 				vim.keymap.set(
 					"n",
 					"<leader>gd",
 					"<cmd>lua vim.lsp.buf.definition()<cr>",
 					{ desc = "LSP: Go to Definition" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>gD",
+					"<cmd>lua vim.lsp.buf.declaration()<cr>",
+					{ desc = "LSP: Go to Declariation" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>go",
+					"<cmd>lua vim.lsp.buf.type_definition()<cr>",
+					{ desc = "LSP: Go to Type's Definition" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>si",
+					"<cmd>lua vim.lsp.buf.hover()<cr>",
+					{ desc = "LSP: Display Symbol's Infors" }
 				)
 			end)
 

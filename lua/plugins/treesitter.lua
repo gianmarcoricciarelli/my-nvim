@@ -44,6 +44,7 @@ return {
 		indent = { enable = true },
 		ensure_installed = {
 			"bash",
+			"fish",
 			"css",
 			"diff",
 			"git_config",

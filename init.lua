@@ -140,6 +140,7 @@ require("lazy").setup({
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
+					fish = { "fish_indent" },
 					css = { "prettier" },
 					scss = { "prettier" },
 					html = { "prettier" },

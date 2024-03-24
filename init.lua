@@ -631,6 +631,7 @@ require("lazy").setup({
 				vue = { { "prettier", "prettier" } },
 				css = { { "prettier", "prettier" } },
 				scss = { { "prettier", "prettier" } },
+				html = { { "prettier", "prettier" } },
 				python = { { "black" } },
 			},
 		},

@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -765,6 +765,10 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
+			require("catppuccin").setup({
+				no_bold = true,
+				no_italic = true,
+			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},

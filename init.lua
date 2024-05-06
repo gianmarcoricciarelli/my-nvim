@@ -676,7 +676,19 @@ require("lazy").setup({
 				no_bold = true,
 				no_italic = true,
 			})
-			vim.cmd.colorscheme("catppuccin")
+			-- Here activate the colorscheme
+			-- vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+
+	{
+		"ellisonleao/gruvbox.nvim",
+		name = "gruvbox",
+		priority = 1000,
+		config = function()
+			require("gruvbox").setup({})
+			-- Here activate the coloscheme
+			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 

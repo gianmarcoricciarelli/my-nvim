@@ -4,8 +4,6 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
-
--- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
@@ -112,15 +110,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -171,14 +160,12 @@ require("lazy").setup({
 	-- after the plugin has been loaded:
 	--  config = function() ... end
 
-	{ -- Useful plugin to show you pending keybinds.
+	{
 		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
-		config = function() -- This is the function that runs, AFTER loading
+		event = "VimEnter",
+		config = function()
 			require("which-key").setup()
-
-			-- Document existing key chains
-			require("which-key").register({
+			require("which-key").add({
 				{ "<leader>c", group = "[C]ode" },
 				{ "<leader>c_", hidden = true },
 				{ "<leader>d", group = "[D]ocument" },
@@ -483,7 +470,6 @@ require("lazy").setup({
 				"stylua", -- Used to format Lua code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
@@ -529,6 +515,7 @@ require("lazy").setup({
 				scss = { { "prettier", "prettier" } },
 				html = { { "prettier", "prettier" } },
 				python = { "black", "isort", "autopep8" },
+				yaml = { { "prettierd", "prettier" } },
 			},
 		},
 	},
@@ -728,6 +715,8 @@ require("lazy").setup({
 				"html",
 				"css",
 				"scss",
+				"python",
+				"yaml",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
